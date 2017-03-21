@@ -1,0 +1,142 @@
+/**
+ * Brainztorm
+ *
+ * LICENSE
+ *
+ * This source file is subject to license that is bundled
+ * with this package in the file docs/LICENSE.txt.
+ *
+ * @author      Brainz SAS. 2014-2017
+ */
+namespace Store\Schemas;
+
+use Data\Types\Flow;
+use Data\Types\StringType;
+use Data\VirtualEntity;
+use Data\Types\IntegerType;
+use Data\Types\Enumerator;
+use Data\Types\LocalizationKey;
+use Data\Helpers\SimpleMappedEntity;
+use Store\Types\ProductCategoriesIcon;
+use Data\Flow\Elements\End;
+use Store\Flow\Panels\Shows;
+use Store\Flow\Elements\Show;
+use Data\Flow\Elements\Start;
+use Store\Flow\Panels\Conditionals;
+use Store\Flow\Elements\Conditional;
+/**
+ * Store\Schemas\Products
+ */
+class Products extends VirtualEntity
+{
+    use SimpleMappedEntity;
+    /**
+     * Initialize virtual entities, build fields and relationships
+     *
+     * @param VirtualEntity $manager
+     */
+    public function initialize($manager)
+    {
+        $this->mapFromEntity("ss:Products");
+        $this->getItem('_id')->setUniqueId(true);
+        $categoryId = $this->getItem('categoryId');
+        $categoryId->setLabel("Store Categories");
+        $categoryId->setType(Enumerator::class);
+        $enumerator = $categoryId->getTypeInstance();
+        $enumerator->setSubType("id");
+        $enumerator->setDataFromModel($this->getManager(), 'ss:Categories', "_id", "identifier");
+        $viewTemplate = $this->getItem('viewTemplate');
+        $viewTemplate->setType(StringType::class);
+        $code = $this->getItem('code');
+        $code->setType(StringType::class);
+        $code->setIsDetail(true);
+        $icon = $this->getItem('icon');
+        $icon->setType(ProductCategoriesIcon::class);
+        $icon->setLabelType("Asset");
+        $name = $this->getItem('name');
+        $name->setLabel("Name");
+        $name->setType(LocalizationKey::class);
+        $description = $this->getItem('description');
+        $description->setLabel("Description");
+        $description->setType(LocalizationKey::class);
+        $ias = $this->getItem("ias");
+        $iasEntity = $ias->getVirtualEntity();
+        $code = $iasEntity->getItem("code");
+        $code->setLabel("Resource");
+        $code->setType(Enumerator::class);
+        $enumerator = $code->getTypeInstance();
+        $enumerator->setDataFromModel($manager, 'r:Resources', '_id', 'name');
+        $requirements = $this->getItem("requirements");
+        $requirementsEntity = $requirements->getVirtualEntity();
+        $requirementsDescription = $requirementsEntity->getItem("description");
+        $requirementsDescription->setLabel("Description");
+        $requirementsDescription->setType(LocalizationKey::class);
+        $requirementIcon = $requirementsEntity->getItem('icon');
+        $requirementIcon->setType(ProductCategoriesIcon::class);
+        $requirementIcon->setLabelType("Asset");
+        $behavior = $requirementsEntity->getItem("behavior");
+        $behavior->setType(Flow::class);
+        $behavior->setLabel("Pre-Requirements");
+        $flow = $behavior->getTypeInstance();
+        $builder = $flow->getBuilder();
+        $builder->add(new Start());
+        $builder->add(new Conditional());
+        $builder->add(new Show());
+        $builder->add(new End());
+        $builder->addPanel(new Conditionals());
+        $builder->addPanel(new Shows());
+        $order = $this->getItem('order');
+        $order->setLabel("Order");
+        $order->setType(StringType::class);
+        $rewards = $this->getItem("rewards");
+        $rewardsEntity = $rewards->getVirtualEntity();
+        $type = $rewardsEntity->getItem('type');
+        $type->setLabel('Item Type');
+        $type->setType(Enumerator::class);
+        $enumerator = $type->getTypeInstance();
+        $enumerator->setData($this->getItemTypes($manager));
+        $code = $rewardsEntity->getItem('code');
+        $code->setLabel('Item Code');
+        $code->setType(Enumerator::class);
+        $amount = $rewardsEntity->getItem('amount');
+        $amount->setLabel('Item Amount');
+        $amount->setType(IntegerType::class);
+        $enumerator = $code->getTypeInstance();
+        $enumerator->setData($this->getItemsDropdown($manager));
+        $this->removeItem("extra");
+    }
+    /**
+     * [getItemTypes description]
+     * @param  [type] $manager [description]
+     * @return array
+     */
+    private function getItemTypes($manager)
+    {
+        $data = array();
+        $types = $manager->getDI()->get('items')->getItemTypes();
+        foreach ($types as $name => $type) {
+            $data[$name] = ucfirst($name);
+        }
+        return $data;
+    }
+    /**
+     *
+     * @param  Manager $manager [description]
+     * @return array
+     */
+    public function getItemsDropdown($manager)
+    {
+        $data = array();
+        $itemsManager = $manager->getDI()->get('items');
+        $types = $itemsManager->getItemTypes();
+        foreach ($types as $name => $type) {
+            $items = $itemsManager->getByType($name);
+            if (count($items)) {
+                foreach ($items as $item) {
+                    $data[(string) $item["_id"]] = $item["code"];
+                }
+            }
+        }
+        return $data;
+    }
+}
