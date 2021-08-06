@@ -1,7 +1,6 @@
 # CodeBuilder for PHP
 Codebuilder is a php tool for generates php code, you can create any type of file that you need.
 
-``
 
 ## You can build php code througth php code with something like this.
 
@@ -43,7 +42,7 @@ $tag = new Classes\Tags($classes);
 
 ```
 
-### The output
+## Output
 `Examples/class.builder.php` -> `Examples/outputs/class.output.php`
 ```php
 <?php
@@ -61,4 +60,6 @@ class ClassName
 }
 
 ```
+
+
 
