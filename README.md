@@ -2,7 +2,7 @@
 
 Codebuilder is a php tool to generates php code, you can create any php code that you need.
 
-## Building a class easy.
+## Quick sample
 
 You can build php code througth php code with something like this.
 
