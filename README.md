@@ -68,7 +68,9 @@ class ClassName
 
 This class creates a class struct in php receives in construct a string with the name of class to be created.
 
-`new Classes\ClassComponent($className)`
+###### Constructor
+
+`ClassComponent($className: String)`
 
 #### Methods
 
@@ -82,12 +84,20 @@ Methods available in the ClassComponent
     * returns a class name assigned.
 
 ###### Setters
+
 - `addExtends($name: String)`
     * Receives a string extends name, basically the class name where extending.
 - `addImplements($name: String)`
     * Receives a string implements name, basically the interface name that you wants to implement.
 - `add($component: Base)`
     * Receives a component object compatible with class creation component.
+
+###### Inyectable classes to `ClassComponent`
+
+- `ClassAttribute` this class extends from Variable and creates a attribute property in the class.
+    
+
+
 
 
 
