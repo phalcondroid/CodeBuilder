@@ -1,10 +1,9 @@
-# CodeBuilder
+<?php
 
-Codebuilder is a tool for php that allows you generate any files with any php code, you could create some files like a classes,
-methods, functions, variables, Method calls, function calls, static methods and vars, etc..
-
-## You can build php code througth php code with something like this.
-```php
+//Define autoloader
+spl_autoload_register(function ($classPath) {
+    include dirname(dirname(__DIR__)) . "/" . str_replace("\\", "/", $classPath) . '.php';
+});
 
 use CodeBuilder\Classes;
 use CodeBuilder\Statements;
@@ -30,4 +29,6 @@ $classes->add(new Statements\StatementBlock($method));
 // Finally the php tags.
 $tag = new Classes\Tags($classes);
 
-```
+file_put_contents("outputs/class.output.php", $tag->resolve());
+
+echo "File was created successfully!";

@@ -3,9 +3,9 @@
 class ClassName
 {
     /**
-     * Nice Comment
+     * This is a comment for class method
      *
-     * @api string $comemntParam
+     * @param string $comemntParam
      */
     public function methodoDeClase()
     {
