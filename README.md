@@ -137,7 +137,7 @@ We are going to start with a variable creation, this is the most simple componen
 
 |  Method | Params |
 |---|---|
-| asArray| ($index: StringLiteral) |
+| asArray| ($index: Base) |
 
 ###### Example
 
@@ -145,14 +145,19 @@ We are going to start with a variable creation, this is the most simple componen
 use CodeBuilder\Expressions\Variable;
 $var = new Variable("var");
 // output #1
-echo $var->resolve();
+echo $var->resolve() . PHP_EOL;
 
 // becomes in array variable
 use CodeBuilder\Expressions\Literals\StringLiteral;
 $var = new Variable("var");
 // becomes in array variable
 $var->asArray(new StringLiteral("assoc_index"));
-echo $var->resolve();
+```
+
+###### Output
+```php
+$var
+$var["assoc_index"]
 ```
 
 ## Creating Class Components

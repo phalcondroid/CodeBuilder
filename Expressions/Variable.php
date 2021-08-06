@@ -11,6 +11,8 @@
  */
 namespace CodeBuilder\Expressions;
 
+use CodeBuilder\Builder\Base;
+
 /**
  * CodeBuilder\Expressions\Variable.
  */
@@ -43,16 +45,16 @@ class Variable extends Expression
      */
     public function asArray(Base $index = null)
     {
-        if (!is_null($index)) {
+        if ($index instanceof Base) {
             $this->struct['asArray'] = '[' . $index->resolve() . ']';
+            return $this;
         }
         $this->struct['asArray'] = '[]';
-
         return $this;
     }
 
     /**
-     * Builde Variable.
+     * Build Variable.
      *
      * @example $myVariable
      *
@@ -62,9 +64,8 @@ class Variable extends Expression
     {
         $asArray = '';
         if ($this->struct['asArray']) {
-            $asArray = '[]';
+            $asArray = $this->struct['asArray'];
         }
-
-        return  $this->identation.'$'.$this->struct['name'].$asArray.$this->semicolon;
+        return  $this->identation . '$' . $this->struct['name'] . $asArray.$this->semicolon;
     }
 }

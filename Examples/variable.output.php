@@ -7,15 +7,14 @@ spl_autoload_register(function ($classPath) {
 use CodeBuilder\Expressions\Variable;
 $var = new Variable("var");
 // output #1
-echo $var->resolve();
+echo $var->resolve() . PHP_EOL;
+file_put_contents("outputs/variable.output.php", $var->resolve() . PHP_EOL);
 
 // becomes in array variable
 use CodeBuilder\Expressions\Literals\StringLiteral;
 $var = new Variable("var");
 // becomes in array variable
 $var->asArray(new StringLiteral("assoc_index"));
-echo $var->resolve();
-
-file_put_contents("outputs/variable.output.php", $tag->resolve());
+file_put_contents("outputs/variable.output.php", $var->resolve() . PHP_EOL, FILE_APPEND);
 
 echo "File was created successfully!";
