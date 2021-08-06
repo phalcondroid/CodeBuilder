@@ -82,9 +82,9 @@ Methods available in the ClassComponent
 
 #### Getters
 
-- ```php getClass() ```
+- `->getClass() `
     * returns a string name class `ClassName::class`
-- ```php getName() ```
+- `->getName() `
     * returns a class name assigned.
 
 #### Setters
