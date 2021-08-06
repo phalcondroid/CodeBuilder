@@ -5,11 +5,19 @@ methods, functions, variables, Method calls, function calls, static methods and 
 
 ## You can build php code througth php code with something like this.
 
+#### Including imports
+
+```php
+use CodeBuilder\Classes;
+use CodeBuilder\Statements;
+use CodeBuilder\Expressions;
+use CodeBuilder\Annotations;
+```
+
 #### Defining a comment.
 ```php
-
-// You can create the last dependencias at beggining, for example a comment of class method.
-$comment = new Annotations\Comment("This is a comment for class method");
+// You can create php code with php through the CodeBuilder toolkit.
+$comment = new Annotations\Comment("This is a comment for a class method");
 $comment->add(new Annotations\PHPDocs(
     DOCS_PARAM,
     "string",
