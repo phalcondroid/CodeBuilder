@@ -31,7 +31,7 @@ $classes = new Classes\ClassComponent("ClassName");
 $classes->add(new Statements\StatementBlock($method));
 ```
 
-#### Defining a class.
+#### Defining a php tag <?php.
 ```php
 // Finally the php tags.
 $tag = new Classes\Tags($classes);
