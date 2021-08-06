@@ -44,7 +44,7 @@ class Variable extends Expression
     public function asArray(Base $index = null)
     {
         if (!is_null($index)) {
-            $this->struct['asArray'] = '['.$index->resolve().']';
+            $this->struct['asArray'] = '[' . $index->resolve() . ']';
         }
         $this->struct['asArray'] = '[]';
 

@@ -4,7 +4,7 @@ Codebuilder is a php tool to generates php code, you can create any php code tha
 
 ## Quick sample
 
-You can build php code througth php code with something like this.
+You can build php code througth php classes using something like this.
 
 #### How to define a comment.
 ```php
@@ -61,26 +61,27 @@ class ClassName
 # Table of Contents
 1. [Intro](#Intro)
 2. [Expressions](#Expressions)
-    - [Creating a variable](#Creating-a-variable)
-    - [Creating an unary expression](#Creating-an-unary-expresion)
-    - [Creating a binary expression](#Creating-a-binary-expression)
-    - [Creating a ternary expression](#Creating-a-ternary-expression)
-    - [Understanding operator types](#Understanding-operator-types)
-        * [Arithmetic](#Arithmetic)
-        * [Combined](#Combined)
-        * [Comparison](#Comparison)
-        * [Decrement](#Decrement)
-        * [Increment](#Increment)
-        * [Logical](#Logical)
-    - [Understanding Literals](#Literals)
-        * [String](#String)
-        * [Integer](#Integer)
-        * [Boolean](#Boolean)
-        * [Double](#Double)
-        * [Constant](#Constant)
-        * [Char](#Char)
-        * [Object](#Object)
-        * [Array](#Array)
+    * [Creating a variable](#Creating-a-variable)
+    * [Understanding expression types](#Understanding-expression-types)
+        - [Creating an unary expression](#Creating-an-unary-expresion)
+        - [Creating a binary expression](#Creating-a-binary-expression)
+        - [Creating a ternary expression](#Creating-a-ternary-expression)
+    * [Understanding operator types](#Understanding-operator-types)
+        - [Arithmetic](#Arithmetic)
+        - [Combined](#Combined)
+        - [Comparison](#Comparison)
+        - [Decrement](#Decrement)
+        - [Increment](#Increment)
+        - [Logical](#Logical)
+    * [Understanding Literals](#Literals)
+        - [String](#String)
+        - [Integer](#Integer)
+        - [Boolean](#Boolean)
+        - [Double](#Double)
+        - [Constant](#Constant)
+        - [Char](#Char)
+        - [Object](#Object)
+        - [Array](#Array)
 3. [Grouping expressions](#Grouping-expressions)
     - [Brackets](#Brackets)
     - [Parenthesis](#Parenthesis)
@@ -109,9 +110,50 @@ class ClassName
     - [Calling traits](#Calling-traits)
     - [Attributes](#Class-attribute)
     - [Attribute call](#Attribute-call)
+    - [Methods](#Methods)
+    - [Calling methods](#Calling-methods)
+8. [Comments & Annotations](#Comments-&-Annotations)
+    - [Comment](#Comment)
+    - [PHPDocs](#PHPDocs)
+    - [Annotation](#Annotation)
+9. [TODO](#TODO)
+
+## Intro
+
+CodeBuilder is a builder from php to creates php code with separated class helpers.
 
 ## Expressions
 
+Expressions works to grouping classes, objects and anything following a precedence rules.
+
+#### Creating a variable
+
+We are going to start with a variable creation, this is the most simple component to represent a value.
+
+###### Variable namespace
+`use CodeBuilder\Expressions\Variable`
+
+###### Functionalities
+
+|  Method | Params |
+|---|---|
+| asArray| ($index: StringLiteral) |
+
+###### Example
+
+```php
+use CodeBuilder\Expressions\Variable;
+$var = new Variable("var");
+// output #1
+echo $var->resolve();
+
+// becomes in array variable
+use CodeBuilder\Expressions\Literals\StringLiteral;
+$var = new Variable("var");
+// becomes in array variable
+$var->asArray(new StringLiteral("assoc_index"));
+echo $var->resolve();
+```
 
 ## Creating Class Components
 
