@@ -6,16 +6,7 @@ Codebuilder is a php tool to generates php code, you can create any php code tha
 
 You can build php code througth php code with something like this.
 
-#### Including imports
-
-```php
-use CodeBuilder\Classes;
-use CodeBuilder\Statements;
-use CodeBuilder\Expressions;
-use CodeBuilder\Annotations;
-```
-
-#### Defining a comment.
+#### How to define a comment.
 ```php
 // You can create php code with php through the CodeBuilder toolkit.
 $comment = new Annotations\Comment("This is a comment for a class method");
@@ -33,15 +24,17 @@ $method  = new Classes\ClassMethod("methodForAClass");
 $method->add($comment);
 ```
 
-#### Defining a class and php tag.
+#### Defining a class.
 ```php
 // The class with a Statementblock, that means a { } curly braces when the code is included.
 $classes = new Classes\ClassComponent("ClassName");
 $classes->add(new Statements\StatementBlock($method));
+```
 
+#### Defining a class.
+```php
 // Finally the php tags.
 $tag = new Classes\Tags($classes);
-
 ```
 
 ## Output
@@ -131,36 +124,14 @@ Methods available in the ClassComponent
 
 Example in `CodeBuilder/Examples/class.attr.builder.php`
 
+### Creates an Attribute
 ```php
-use CodeBuilder\Classes;
-use CodeBuilder\Annotations;
-use CodeBuilder\Expressions;
-
-// Comment for attribute.
-$comment = new Annotations\Comment("This is a comment for a class method");
-$comment->add(new Annotations\PHPDocs(
-    DOCS_PARAM,
-    "string",
-    new Expressions\Variable("comemntParam")
-));
-
 // Creates an attribute object.
 $attr = new Classes\ClassAttribute(
     new Expressions\Variable("attributeClass")
 );
 $attr->addVisibility("protected");
 $attr->add($comment);
-
-// Class receives an attribute builded.
-$classes = new Classes\ClassComponent("ClassName");
-$classes->add($attr);
-
-// Finally the php tags.
-$tag = new Classes\Tags($classes);
-
-file_put_contents("outputs/class.attr.output.php", $tag->resolve());
-
-echo "File was created successfully!";
 ```
 
 #### Output
@@ -210,24 +181,10 @@ Methods available in the ClassNamespace
 Example in `CodeBuilder/Examples/class.ns.builder.php`
 
 ```php
-//Define autoloader
-
-// Comment for ns.
 // Creates an ns object.
 $ns = new Classes\ClassNamespace("BaseNamespace\Created\FromPHP");
 $ns->add("\BaseNamespace\Test");
 $ns->add("\BaseNamespace\Test2");
-
-// Class receives an ns builded.
-$classes = new Classes\ClassComponent("ClassName");
-$classes->add($ns);
-
-// Finally the php tags.
-$tag = new Classes\Tags($classes);
-
-file_put_contents("outputs/class.ns.output.php", $tag->resolve());
-
-echo "File was created successfully!";
 ```
     
 ## Output
@@ -279,20 +236,9 @@ Methods available in the ClassTrait
 Example in `CodeBuilder/Examples/class.trait.builder.php`
 
 ```php
-use CodeBuilder\Classes;
-
-// Creates an ns object.
+// Creates an trait object.
 $ns = new Classes\ClassTrait("BaseTrait\Created\FromPHP");
 $ns->add("\BaseTrait\Test");
-
-// Class receives an ns builded.
-$classes = new Classes\ClassComponent("ClassName");
-$classes->add($ns);
-
-// Finally the php tags.
-$tag = new Classes\Tags($classes);
-
-file_put_contents("outputs/class.trait.output.php", $tag->resolve());
 ```
 
 ## Output
