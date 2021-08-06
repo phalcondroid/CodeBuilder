@@ -25,7 +25,7 @@ $attr = new Classes\ClassAttribute(
 $attr->addVisibility("protected");
 $attr->add($comment);
 
-// The class with a Statementblock, that means a { } curly braces when the code is included.
+// Class receives an attribute builded.
 $classes = new Classes\ClassComponent("ClassName");
 $classes->add($attr);
 

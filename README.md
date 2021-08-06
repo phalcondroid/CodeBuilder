@@ -113,7 +113,7 @@ Methods available in the ClassComponent
 
 - `addVisibility($attrVisibility: String)`
     * Receives a string with visibility option, default `public`.
-    
+
 Example in `CodeBuilder/Examples/class.attr.builder.php`
 
 ```php
@@ -136,7 +136,7 @@ $attr = new Classes\ClassAttribute(
 $attr->addVisibility("protected");
 $attr->add($comment);
 
-// The class with a Statementblock, that means a { } curly braces when the code is included.
+// Class receives an attribute builded.
 $classes = new Classes\ClassComponent("ClassName");
 $classes->add($attr);
 
