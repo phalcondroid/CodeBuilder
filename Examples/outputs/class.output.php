@@ -7,7 +7,7 @@ class ClassName
      *
      * @param string $comemntParam
      */
-    public function classMethod()
+    public function methodForAClass()
     {
     }
 }
