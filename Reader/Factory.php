@@ -20,14 +20,14 @@ use PhpParser\PrettyPrinter\Standard;
 use PhpParser\Node\Expr\ClassConstFetch;
 
 /**
- * Brainztorm.
+ * Code Builder for php tool.
  *
  * LICENSE
  *
  * This source file is subject to license that is bundled
  * with this package in the file docs/LICENSE.txt.
  *
- * @author Brainz SAS. 2014-2017
+ * @author Julian Arturo Molina Castiblanco @phalcondroid
  */
 class Factory
 {
@@ -250,7 +250,7 @@ class Factory
     {
         $comment = new Comment();
         $comment->add("$setOrGet action for \$this->$attr attribute");
-        $comment->add('Powered by brainztorm code generator');
+        $comment->add('Powered by Code Builder for php tool code generator');
 
         if ($setOrGet == 1) {
             $comment->add(new PHPDocs(PHPDocs::_PARAM, 'String', new Variable('value')));

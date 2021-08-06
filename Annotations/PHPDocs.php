@@ -4,47 +4,47 @@ namespace CodeBuilder\Annotations;
 
 use CodeBuilder\Builder\Base;
 
+define("DOCS_API", 'api');
+define("DOCS_AUTHOR", 'author');
+define("DOCS_CATEGORY", 'category');
+define("DOCS_COPYRIGHT", 'copyright');
+define("DOCS_DEPRECATED", 'deprecated');
+define("DOCS_EXAMPLE", 'example');
+define("DOCS_FILESOURCE", 'filesource');
+define("DOCS_GLOBAL", 'global');
+define("DOCS_IGNORE", 'ignore');
+define("DOCS_INTERNAL", 'internal');
+define("DOCS_LICENCE", 'licence');
+define("DOCS_LINK", 'link');
+define("DOCS_METHOD", 'method');
+define("DOCS_PACKAGE", 'package');
+define("DOCS_PARAM", 'param');
+define("DOCS_PROPERTY", 'property');
+define("DOCS_PROPERTY_READ", 'property-read');
+define("DOCS_PROPERTY_WRITE", 'property-write');
+define("DOCS_RETURN", 'return');
+define("DOCS_SEE", 'see');
+define("DOCS_SINCE", 'since');
+define("DOCS_SOURCE", 'source');
+define("DOCS_SUBPACKAGE", 'subpackage');
+define("DOCS_THROWS", 'throws');
+define("DOCS_TODO", 'todo');
+define("DOCS_USES", 'uses');
+define("DOCS_VAR", 'var');
+define("DOCS_VERSION", 'version');
+
 /**
- * Brainztorm.
+ * Code Builder for php tool.
  *
  * LICENSE
  *
  * This source file is subject to license that is bundled
  * with this package in the file docs/LICENSE.txt.
  *
- * @author Brainz SAS. 2014-2017
+ * @author Julian Arturo Molina Castiblanco @phalcondroid
  */
 class PHPDocs extends Base
 {
-    const _API = 'api';
-    const _AUTHOR = 'author';
-    const _CATEGORY = 'category';
-    const _COPYRIGHT = 'copyright';
-    const _DEPRECATED = 'deprecated';
-    const _EXAMPLE = 'example';
-    const _FILESOURCE = 'filesource';
-    const _GLOBAL = 'global';
-    const _IGNORE = 'ignore';
-    const _INTERNAL = 'internal';
-    const _LICENCE = 'licence';
-    const _LINK = 'link';
-    const _METHOD = 'method';
-    const _PACKAGE = 'package';
-    const _PARAM = 'param';
-    const _PROPERTY = 'property';
-    const _PROPERTY_READ = 'property-read';
-    const _PROPERTY_WRITE = 'property-write';
-    const _RETURN = 'return';
-    const _SEE = 'see';
-    const _SINCE = 'since';
-    const _SOURCE = 'source';
-    const _SUBPACKAGE = 'subpackage';
-    const _THROWS = 'throws';
-    const _TODO = 'todo';
-    const _USES = 'uses';
-    const _VAR = 'var';
-    const _VERSION = 'version';
-
     /**
      * @var array
      */
@@ -60,21 +60,21 @@ class PHPDocs extends Base
      */
     public function __construct($name, $type = false, $variable = false, $description = false)
     {
-        $phpdoc = '@'.$name;
+        $phpdoc = '@' . $name;
         if ($type) {
-            $phpdoc .= ' '.$type;
+            $phpdoc .= ' ' . $type;
         }
 
         if ($variable) {
             if ($variable instanceof Base) {
-                $phpdoc .= ' '.$variable->resolve();
+                $phpdoc .= ' ' . $variable->resolve();
             } else {
-                $phpdoc .= ' '.$variable;
+                $phpdoc .= ' ' . $variable;
             }
         }
 
         if ($description) {
-            $phpdoc .= ' '.$description;
+            $phpdoc .= ' ' . $description;
         }
         $this->struct['phpdoc'] = $phpdoc;
     }

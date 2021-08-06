@@ -8,14 +8,14 @@ use CodeBuilder\Annotations\Comment;
 use CodeBuilder\Statements\StatementBlock;
 
 /**
- * Brainztorm.
+ * Code Builder for php tool.
  *
  * LICENSE
  *
  * This source file is subject to license that is bundled
  * with this package in the file docs/LICENSE.txt.
  *
- * @author Brainz SAS. 2014-2017
+ * @author Julian Arturo Molina Castiblanco @phalcondroid
  */
 class ClassComponent extends Base
 {
@@ -104,7 +104,7 @@ class ClassComponent extends Base
             $component->setLevel(1);
             $this->struct['attrs'][$component->getName()] = $component;
         } elseif ($component instanceof ClassMethod) {
-            throw new Exception('The method should be content into statement block');
+            throw new \Exception('The method should be content into statement block');
         }
     }
 
