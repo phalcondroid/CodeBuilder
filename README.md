@@ -92,7 +92,7 @@ Methods available in the ClassComponent
 - `add($component: Base)`
     * Receives a component object compatible with class creation component.
 
-###### Attribute Class for ClassComponent
+#### Attribute Class for ClassComponent
 
 - `ClassAttribute` this class receive a Variable object and creates an attribute property in the class.
 
