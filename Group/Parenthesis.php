@@ -30,6 +30,6 @@ class Parenthesis extends Group
             $finally = $content->resolve();
         }
 
-        return '('.$finally.')';
+        return '(' . $finally . ')';
     }
 }

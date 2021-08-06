@@ -12,7 +12,7 @@ class SquareBrackets extends SquareBrackets
     /**
      * @var array
      */
-    private $struct;
+    private $struct = "";
 
     /**
      * @param String $content
@@ -28,6 +28,14 @@ class SquareBrackets extends SquareBrackets
      */
     public function resolve()
     {
-        return "(" . . ")";
+        $content = $this->struct['content'];
+        $finally = '';
+        if ($content instanceof Expression) {
+            $finally = ltrim($content->resolve());
+        } else {
+            $finally = $content->resolve();
+        }
+
+        return '[' . $finally . ']';
     }
 }

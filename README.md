@@ -98,7 +98,17 @@ class ClassName
     - [While](#While)
     - [Break](#Break)
     - [TryCatch](#TryCatch)
-5. [Globals](#globals)
+5. [Statics](#Statics)
+    - [Static](#Static)
+    - [Static call](#Static-call)
+6. [Structural functions](#Structural-functions)
+    - [Calling a global function](#Calling-a-global-function)
+7. [Creating classes](#Creating-classes)
+    - [Creating a class](#Creating-a-class)
+    - [Namespaces](#Namespaces)
+    - [Calling traits](#Calling-traits)
+    - [Attributes](#Class-attribute)
+    - [Attribute call](#Attribute-call)
 
 ## Expressions
 
