@@ -58,11 +58,19 @@ class ClassName
 
 ## Documentation
 
-### Creating Class Components
+# Table of Contents
+1. [Creating a variable](#Creating-a-variable)
+2. [Example2](#example2)
+3. [Third Example](#third-example)
+4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 
 ```php
 CodeBuilder\Classes\ClassComponent
 ```
+
+## Creating a variable
+
+### Creating Class Components
 
 This class creates a class struct in php receives in construct a string with the name of class to be created.
 
