@@ -42,3 +42,22 @@ $classes->add(new Statements\StatementBlock($method));
 $tag = new Classes\Tags($classes);
 
 ```
+
+### The output
+`Examples/class.builder.php` -> `Examples/outputs/class.output.php`
+```php
+<?php
+
+class ClassName
+{
+    /**
+     * This is a comment for class method
+     *
+     * @param string $comemntParam
+     */
+    public function methodoDeClase()
+    {
+    }
+}
+
+```
