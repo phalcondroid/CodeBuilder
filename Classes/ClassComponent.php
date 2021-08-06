@@ -47,7 +47,7 @@ class ClassComponent extends Base
      */
     public function getClass()
     {
-        return $this->struct['name'].'::class';
+        return $this->struct['name'] . '::class';
     }
 
     /**

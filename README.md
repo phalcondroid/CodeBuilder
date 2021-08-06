@@ -1,7 +1,6 @@
 # CodeBuilder for PHP
 Codebuilder is a php tool for generates php code, you can create any type of file that you need.
 
-
 ## You can build php code througth php code with something like this.
 
 #### Including imports
@@ -60,6 +59,36 @@ class ClassName
 }
 
 ```
+
+## Documentation
+
+#### Classes
+
+`CodeBuilder\Classes\ClassComponent`
+
+This class creates a class struct in php receives in construct a string with the name of class to be created.
+
+`new Classes\ClassComponent($className)`
+
+#### Methods
+
+Methods available in the ClassComponent
+
+###### Getters
+
+- `getClass()`
+    * returns a string name class `ClassName::class`
+- `getName()`
+    * returns a class name assigned.
+
+###### Setters
+- `addExtends($name: String)`
+    * Receives a string extends name, basically the class name where extending.
+- `addImplements($name: String)`
+    * Receives a string implements name, basically the interface name that you wants to implement.
+- `add($component: Base)`
+    * Receives a component object compatible with class creation component.
+
 
 
 
