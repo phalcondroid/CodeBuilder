@@ -113,6 +113,7 @@ Methods available in the ClassComponent
 
 - `addVisibility($attrVisibility: String)`
     * Receives a string with visibility option, default `public`.
+    
 Example in `CodeBuilder/Examples/class.attr.builder.php`
 
 ```php
