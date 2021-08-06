@@ -1,7 +1,7 @@
 # CodeBuilder
+> Codebuilder is a php tool for generates php code, you can create any type of file that you need.
 
-Codebuilder is a tool for php that allows you generate any files with any php code, you could create some files like a classes,
-methods, functions, variables, Method calls, function calls, static methods and vars, etc..
+Codebuilder is a php tool for generates php code, you can create any type of file that you need.
 
 ## You can build php code througth php code with something like this.
 
@@ -61,3 +61,4 @@ class ClassName
 }
 
 ```
+
