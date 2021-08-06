@@ -139,24 +139,29 @@ We are going to start with a variable creation, this is the most simple componen
 |---|---|
 | asArray| ($index: Base) |
 
-###### Example
+###### Example #1
 
 ```php
-use CodeBuilder\Expressions\Variable;
 $var = new Variable("var");
-// output #1
 echo $var->resolve() . PHP_EOL;
-
-// becomes in array variable
-use CodeBuilder\Expressions\Literals\StringLiteral;
-$var = new Variable("var");
-// becomes in array variable
-$var->asArray(new StringLiteral("assoc_index"));
 ```
 
 ###### Output
 ```php
 $var
+```
+
+###### Example #2
+```php
+// becomes in array variable
+use CodeBuilder\Expressions\Literals\StringLiteral;
+$var = new Variable("var");
+$var->asArray(new StringLiteral("assoc_index"));
+$var->resolve();
+```
+
+###### Output
+```php
 $var["assoc_index"]
 ```
 
