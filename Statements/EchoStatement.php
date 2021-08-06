@@ -45,6 +45,6 @@ class EchoStatement extends Base
             }
         }
 
-        return $this->getNewLine().$this->getTab().'echo '.$forPrint.';';
+        return $this->getNewLine() . $this->getTab() . 'echo ' . $forPrint . ';';
     }
 }
