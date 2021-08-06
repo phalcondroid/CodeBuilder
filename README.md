@@ -7,13 +7,10 @@ methods, functions, variables, Method calls, function calls, static methods and 
 ```php
 
 // import the namespaces that you have to use.
-use CodeBuilder\Classes\Tags;
-use CodeBuilder\Annotations\Comment;
-use CodeBuilder\Annotations\PHPDocs;
-use CodeBuilder\Classes\ClassMethod;
-use CodeBuilder\Expressions\Variable;
-use CodeBuilder\Classes\ClassComponent;
-use CodeBuilder\Statements\StatementBlock;
+use CodeBuilder\Classes;
+use CodeBuilder\Statements;
+use CodeBuilder\Expressions;
+use CodeBuilder\Annotations;
 
 // You can create the last dependencias at beggining, for example a comment of class method.
 $comment = new Comment("This is a comment for class method");
