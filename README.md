@@ -62,13 +62,13 @@ class ClassName
 
 ## Documentation
 
-#### Classes
+### Creating Class Components
 
 `CodeBuilder\Classes\ClassComponent`
 
 This class creates a class struct in php receives in construct a string with the name of class to be created.
 
-###### Constructor
+#### Constructor
 
 `ClassComponent($className: String)`
 
@@ -76,14 +76,14 @@ This class creates a class struct in php receives in construct a string with the
 
 Methods available in the ClassComponent
 
-###### Getters
+#### Getters
 
 - `getClass()`
     * returns a string name class `ClassName::class`
 - `getName()`
     * returns a class name assigned.
 
-###### Setters
+#### Setters
 
 - `addExtends($name: String)`
     * Receives a string extends name, basically the class name where extending.
@@ -92,11 +92,13 @@ Methods available in the ClassComponent
 - `add($component: Base)`
     * Receives a component object compatible with class creation component.
 
-#### Attribute Class for ClassComponent
+
+
+### Attribute Class for ClassComponent
 
 - `ClassAttribute` this class receive a Variable object and creates an attribute property in the class.
 
-###### Constructor
+#### Constructor
 
 `ClassAttribute($className: Expression\Variable)`
 
@@ -104,12 +106,12 @@ Methods available in the ClassComponent
 
 Methods available in the ClassComponent
 
-###### Getters
+#### Getters
 
 - `getName()`
     * returns a string name assigned.
 
-###### Setters
+#### Setters
 
 - `addVisibility($attrVisibility: String)`
     * Receives a string with visibility option, default `public`.
@@ -164,7 +166,79 @@ class ClassName
     protected $attributeClass;
 }
 ```
+
+
+### Namespace for a class component
+
+- `ClassNamespace` this class receive a class namespace as string.
+
+`namespace \Example;`
+
+#### Constructor
+
+`ClassNamespace($namespace: String)`
+
+#### Methods
+
+Methods available in the ClassNamespace
+
+#### Setters
+
+- `add($ns: String|Base)`
+    * You can add a comment for the base namespace additionally.
+    * The next additions in the add method becomes in a `use` for the class.
+
+Example in `CodeBuilder/Examples/class.ns.builder.php`
+
+```php
+//Define autoloader
+use CodeBuilder\Classes;
+use CodeBuilder\Annotations;
+use CodeBuilder\Expressions;
+
+// Comment for ns.
+$comment = new Annotations\Comment("This is a comment for a namespace class.");
+$comment->add(new Annotations\PHPDocs(
+    DOCS_AUTHOR,
+    "",
+    new Expressions\Variable("Phalcondroid")
+));
+
+// Creates an ns object.
+$ns = new Classes\ClassNamespace("BaseNamespace\Created\FromPHP");
+$ns->add($comment);
+$ns->add("\BaseNamespace\Test");
+
+// Class receives an ns builded.
+$classes = new Classes\ClassComponent("ClassName");
+$classes->add($ns);
+
+// Finally the php tags.
+$tag = new Classes\Tags($classes);
+
+file_put_contents("outputs/class.ns.output.php", $tag->resolve());
+
+echo "File was created successfully!";
+```
     
+## Output
+
+```php
+<?php
+
+/**
+ * This is a comment for a namespace class.
+ *
+ * @author phalcondroid
+ */
+namespace BaseNamespace\Created\FromPHP;
+
+use \BaseNamespace\Test;
+
+class ClassName
+{
+}
+```
 
 
 

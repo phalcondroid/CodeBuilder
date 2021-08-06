@@ -25,7 +25,7 @@ $attr = new Classes\ClassAttribute(
 $attr->addVisibility("protected");
 $attr->add($comment);
 
-// Class receives an attribute builded.
+// Class receives an attribute builded .
 $classes = new Classes\ClassComponent("ClassName");
 $classes->add($attr);
 
