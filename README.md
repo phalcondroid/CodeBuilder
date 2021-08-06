@@ -72,7 +72,9 @@ This class creates a class struct in php receives in construct a string with the
 
 #### Constructor
 
-`ClassComponent($className: String)`
+```php
+ClassComponent($className: String)
+```
 
 #### Methods
 
@@ -80,9 +82,9 @@ Methods available in the ClassComponent
 
 #### Getters
 
-- `getClass()`
+- ```php getClass() ```
     * returns a string name class `ClassName::class`
-- `getName()`
+- ```php getName() ```
     * returns a class name assigned.
 
 #### Setters
