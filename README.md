@@ -143,7 +143,7 @@ We are going to start with a variable creation, this is the most simple componen
 
 ```php
 $var = new Variable("var");
-echo $var->resolve() . PHP_EOL;
+echo $var->resolve();
 ```
 
 ###### Output
@@ -154,10 +154,9 @@ $var
 ###### Example #2
 ```php
 // becomes in array variable
-use CodeBuilder\Expressions\Literals\StringLiteral;
 $var = new Variable("var");
-$var->asArray(new StringLiteral("assoc_index"));
-$var->resolve();
+$var->asArray(new CodeBuilder\Expressions\Literals\StringLiteral("assoc_index"));
+echo $var->resolve();
 ```
 
 ###### Output
