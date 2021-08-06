@@ -7,7 +7,7 @@ class ClassName
      *
      * @param string $comemntParam
      */
-    public function methodoDeClase()
+    public function classMethod()
     {
     }
 }

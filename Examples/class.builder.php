@@ -19,7 +19,7 @@ $comment->add(new Annotations\PHPDocs(
 ));
 
 // This is the class method.
-$method  = new Classes\ClassMethod("methodoDeClase");
+$method  = new Classes\ClassMethod("methodForAClass");
 $method->add($comment);
 
 // The class with a Statementblock, that means a { } curly braces when the code is included.
