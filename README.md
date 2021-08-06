@@ -1,5 +1,6 @@
 # CodeBuilder for PHP
-Codebuilder is a php tool for generates php code, you can create any type of file that you need.
+
+Codebuilder is a php tool to generates php code, you can create any php code that you need.
 
 ## Building a class easy.
 
@@ -180,7 +181,7 @@ class ClassName
 ```
 
 
-### Namespace for a class component
+### Namespaces for a class component
 
 ```php
 CodeBuilder\Classes\ClassNamespace
@@ -210,21 +211,10 @@ Example in `CodeBuilder/Examples/class.ns.builder.php`
 
 ```php
 //Define autoloader
-use CodeBuilder\Classes;
-use CodeBuilder\Annotations;
-use CodeBuilder\Expressions;
 
 // Comment for ns.
-$comment = new Annotations\Comment("This is a comment for a namespace class.");
-$comment->add(new Annotations\PHPDocs(
-    DOCS_AUTHOR,
-    "",
-    new Expressions\Variable("Phalcondroid")
-));
-
 // Creates an ns object.
 $ns = new Classes\ClassNamespace("BaseNamespace\Created\FromPHP");
-$ns->add($comment);
 $ns->add("\BaseNamespace\Test");
 $ns->add("\BaseNamespace\Test2");
 
@@ -260,6 +250,61 @@ class ClassName
 }
 ```
 
+
+### Use traits in class component
+
+```php
+CodeBuilder\Classes\ClassTrait
+```
+
+This class receive a use trait as string.
+
+`use \Example\Trait;`
+
+#### Constructor
+
+```php
+ClassTrait($trait: String)
+```
+
+#### Methods
+
+Methods available in the ClassTrait
+
+#### Setters
+
+- `add($trait: String)`
+    * These additions in the add method becomes in a `use` for the class.
+
+Example in `CodeBuilder/Examples/class.trait.builder.php`
+
+```php
+use CodeBuilder\Classes;
+
+// Creates an ns object.
+$ns = new Classes\ClassTrait("BaseTrait\Created\FromPHP");
+$ns->add("\BaseTrait\Test");
+
+// Class receives an ns builded.
+$classes = new Classes\ClassComponent("ClassName");
+$classes->add($ns);
+
+// Finally the php tags.
+$tag = new Classes\Tags($classes);
+
+file_put_contents("outputs/class.trait.output.php", $tag->resolve());
+```
+
+## Output
+
+```php
+<?php
+
+class ClassName
+{
+    use BaseTrait\Created\FromPHP, \BaseTrait\Test;
+}
+```
 
 
 
