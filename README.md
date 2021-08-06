@@ -66,7 +66,9 @@ class ClassName
 
 ### Creating Class Components
 
-`CodeBuilder\Classes\ClassComponent`
+```php
+CodeBuilder\Classes\ClassComponent
+```
 
 This class creates a class struct in php receives in construct a string with the name of class to be created.
 
@@ -100,11 +102,17 @@ Methods available in the ClassComponent
 
 ### Attribute Class for ClassComponent
 
-- `ClassAttribute` this class receive a Variable object and creates an attribute property in the class.
+```php
+CodeBuilder\Classes\ClassAttribute
+```
+
+This class receive a Variable object and creates an attribute property in the class.
 
 #### Constructor
 
-`ClassAttribute($className: Expression\Variable)`
+```php
+ClassAttribute($className: Expression\Variable)
+```
 
 #### Methods
 
@@ -174,13 +182,19 @@ class ClassName
 
 ### Namespace for a class component
 
-- `ClassNamespace` this class receive a class namespace as string.
+```php
+CodeBuilder\Classes\ClassNamespace
+```
+
+This class receive a class namespace as string.
 
 `namespace \Example;`
 
 #### Constructor
 
-`ClassNamespace($namespace: String)`
+```php
+ClassNamespace($namespace: String)
+```
 
 #### Methods
 
@@ -212,6 +226,7 @@ $comment->add(new Annotations\PHPDocs(
 $ns = new Classes\ClassNamespace("BaseNamespace\Created\FromPHP");
 $ns->add($comment);
 $ns->add("\BaseNamespace\Test");
+$ns->add("\BaseNamespace\Test2");
 
 // Class receives an ns builded.
 $classes = new Classes\ClassComponent("ClassName");
@@ -238,6 +253,7 @@ echo "File was created successfully!";
 namespace BaseNamespace\Created\FromPHP;
 
 use \BaseNamespace\Test;
+use \BaseNamespace\Test2;
 
 class ClassName
 {
