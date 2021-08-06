@@ -92,9 +92,77 @@ Methods available in the ClassComponent
 - `add($component: Base)`
     * Receives a component object compatible with class creation component.
 
-###### Inyectable classes to `ClassComponent`
+###### Attribute Class for ClassComponent
 
-- `ClassAttribute` this class extends from Variable and creates a attribute property in the class.
+- `ClassAttribute` this class receive a Variable object and creates an attribute property in the class.
+
+###### Constructor
+
+`ClassAttribute($className: Expression\Variable)`
+
+#### Methods
+
+Methods available in the ClassComponent
+
+###### Getters
+
+- `getName()`
+    * returns a string name assigned.
+
+###### Setters
+
+- `addVisibility($attrVisibility: String)`
+    * Receives a string with visibility option, default `public`.
+Example in `CodeBuilder/Examples/class.attr.builder.php`
+
+```php
+use CodeBuilder\Classes;
+use CodeBuilder\Annotations;
+use CodeBuilder\Expressions;
+
+// Comment for attribute.
+$comment = new Annotations\Comment("This is a comment for a class method");
+$comment->add(new Annotations\PHPDocs(
+    DOCS_PARAM,
+    "string",
+    new Expressions\Variable("comemntParam")
+));
+
+// Creates an attribute object.
+$attr = new Classes\ClassAttribute(
+    new Expressions\Variable("attributeClass")
+);
+$attr->addVisibility("protected");
+$attr->add($comment);
+
+// The class with a Statementblock, that means a { } curly braces when the code is included.
+$classes = new Classes\ClassComponent("ClassName");
+$classes->add($attr);
+
+// Finally the php tags.
+$tag = new Classes\Tags($classes);
+
+file_put_contents("outputs/class.attr.output.php", $tag->resolve());
+
+echo "File was created successfully!";
+```
+
+#### Output
+
+```php
+<?php
+
+class ClassName
+{
+
+    /**
+     * This is a comment for a class attribute.
+     *
+     * @var string $attr
+     */
+    protected $attributeClass;
+}
+```
     
 
 
