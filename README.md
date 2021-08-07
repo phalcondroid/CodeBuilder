@@ -63,7 +63,7 @@ class ClassName
 2. [Expressions](#Expressions)
     * [Creating a variable](#Creating-a-variable)
     * [Understanding expression types](#Understanding-expression-types)
-        - [Unary expression](#Unary-expresion)
+        - [Unary expression](#Unary-expression)
         - [Binary expression](#Binary-expression)
         - [Ternary expression](#Ternary-expression)
     * [Operator types](#Operator-types)
