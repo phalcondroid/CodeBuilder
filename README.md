@@ -228,6 +228,27 @@ echo $expression->resolve();
 $name = "text!!!";
 ```
 
+### Ternary expression
+
+`use CodeBuilder\Expressions\Ternary;`
+
+```php
+$ternary = new Ternary(
+    new Unary(
+        "!",
+        new Variable("name")
+    ),
+    new Variable("name"),
+    new StringLiteral("")
+);
+echo $ternary->resolve();
+```
+
+###### Output
+```php
+!$name ? $name : ""
+```
+
 ## Creating Class Components
 
 This class creates a class struct in php receives in construct a string with the name of class to be created.
