@@ -63,10 +63,10 @@ class ClassName
 2. [Expressions](#Expressions)
     * [Creating a variable](#Creating-a-variable)
     * [Understanding expression types](#Understanding-expression-types)
-        - [Creating an unary expression](#Creating-an-unary-expresion)
-        - [Creating a binary expression](#Creating-a-binary-expression)
-        - [Creating a ternary expression](#Creating-a-ternary-expression)
-    * [Understanding operator types](#Understanding-operator-types)
+        - [Unary expression](#Unary-expresion)
+        - [Binary expression](#Binary-expression)
+        - [Ternary expression](#Ternary-expression)
+    * [Operator types](#Operator-types)
         - [Arithmetic](#Arithmetic)
         - [Combined](#Combined)
         - [Comparison](#Comparison)
@@ -168,7 +168,7 @@ $var["assoc_index"]
 
 There are several types of expressions when we want grouping the language components, something like unary that means 2 components.
 
-### Unary
+### Unary expression
 
 Is a group of two types of components.
 
@@ -186,6 +186,46 @@ echo $expression->resolve();
 
 ```php
 $name;
+```
+
+### Binary expression
+
+Is a group of three types of components.
+
+`use CodeBuilder\Expressions\Binary`
+
+```php
+$expression = new Binary(
+    new Variable("name"),
+    "=",
+    new StringLiteral("text!!!");
+);
+echo $expression->resolve();
+```
+
+###### Output
+
+```php
+$name = "text!!!"
+```
+
+###### Combined
+```php
+$expression = new Unary(
+    new Binary(
+        new Variable("name"),
+        "=",
+        new StringLiteral("text!!!");
+    ),
+    ";"
+);
+echo $expression->resolve();
+```
+
+###### Output
+
+```php
+$name = "text!!!";
 ```
 
 ## Creating Class Components

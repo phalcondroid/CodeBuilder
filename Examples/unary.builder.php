@@ -10,6 +10,6 @@ use CodeBuilder\Expressions\Variable;
 $name = new Unary(new Variable("name"), ";");
 $name->resolve() . PHP_EOL;
 
-file_put_contents("outputs/unary.output.php", $name->resolve() . PHP_EOL, FILE_APPEND);
+file_put_contents("outputs/unary.output.php", $name->resolve() . PHP_EOL);
 
 echo "File was created successfully!";
