@@ -164,6 +164,30 @@ echo $var->resolve();
 $var["assoc_index"]
 ```
 
+## Understanding expression types
+
+There are several types of expressions when we want grouping the language components, something like unary that means 2 components.
+
+### Unary
+
+Is a group of two types of components.
+
+`use CodeBuilder\Expressions\Unary`
+
+```php
+$expression = new Unary(
+    new Variable("exp1"),
+    ";"
+);
+echo $expression->resolve();
+```
+
+###### Output
+
+```php
+$name;
+```
+
 ## Creating Class Components
 
 This class creates a class struct in php receives in construct a string with the name of class to be created.

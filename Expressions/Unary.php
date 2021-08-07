@@ -106,6 +106,6 @@ class Unary extends Expression
      */
     public function resolve()
     {
-        return $this->identation.$this->compileValues().$this->semicolon;
+        return $this->identation.$this->compileValues() . $this->semicolon;
     }
 }
