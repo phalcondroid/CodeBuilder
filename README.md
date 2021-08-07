@@ -317,7 +317,6 @@ Example in `CodeBuilder/Examples/class.attr.builder.php`
 
 ### Creates an Attribute
 ```php
-// Creates an attribute object.
 $attr = new Classes\ClassAttribute(
     new Expressions\Variable("attributeClass")
 );
@@ -332,7 +331,6 @@ $attr->add($comment);
 
 class ClassName
 {
-
     /**
      * This is a comment for a class attribute.
      *
@@ -372,7 +370,6 @@ Methods available in the ClassNamespace
 Example in `CodeBuilder/Examples/class.ns.builder.php`
 
 ```php
-// Creates an ns object.
 $ns = new Classes\ClassNamespace("BaseNamespace\Created\FromPHP");
 $ns->add("\BaseNamespace\Test");
 $ns->add("\BaseNamespace\Test2");
@@ -427,7 +424,6 @@ Methods available in the ClassTrait
 Example in `CodeBuilder/Examples/class.trait.builder.php`
 
 ```php
-// Creates an trait object.
 $ns = new Classes\ClassTrait("BaseTrait\Created\FromPHP");
 $ns->add("\BaseTrait\Test");
 ```
