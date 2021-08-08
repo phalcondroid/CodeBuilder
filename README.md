@@ -82,7 +82,7 @@ class ClassName
         - [Char](#Char)
         - [Object](#Object)
         - [Array](#Array)
-3. [Grouping expressions](#Grouping-expressions)
+3. [Grouping](#Grouping)
     - [Brackets](#Brackets)
     - [Parenthesis](#Parenthesis)
     - [Square brackets](#Square-brackets)
@@ -396,6 +396,145 @@ echo $bin->resolve();
 ###### Output
 ```php
 $index--
+```
+
+## Logical
+
+```php
+class Logical extends Operator
+{
+    const _AND_ = 'and';
+    const _OR_ = 'or';
+    const _AND = '&&';
+    const _OR = '||';
+    const _XOR = '!';
+    const _AND_BIN = '&';
+    const _OR_BIN = '|';
+    const _XOR_BIN = '^';
+    const _SR = '>>';
+    const _SL = '<<';
+    const _NOT_BIN = '~';
+}
+```
+
+###### Example
+
+```php
+$bin = new Binary(
+    new Variable("sum"),
+    Decrement._AND_BIN,
+    new Variable("subs")
+);
+echo $bin->resolve();
+```
+
+###### Output
+```php
+$sum & $subs
+```
+
+## Literals
+
+To represent a literal type of value for code generated.
+
+.
+
+##### String
+##### Object
+##### Null
+##### Integer
+##### Double
+##### Constant
+##### Char
+##### Boolean
+
+.
+
+###### Example
+```php
+$expr = new Unary(
+    "echo",
+    new StringLiteral("hi literal!")
+)
+echo $expr->resolve();
+```
+
+##### Output
+```php
+echo "hi literal!"
+```
+
+##### Array
+
+But arrays in php is more complicated.
+
+`new ArrayLiteral(val: Base)`
+
+|  Methods | Example |
+|---|---|
+| asFunction | `array('val1', 'val2', val3')` |
+| getClass | static |
+
+##### Example
+```php
+$arr = new ArrayLiteral(new Variable("values"));
+$arr->add(new StringLiteral("str"));
+$arr->add(new IntegerLiteral(123));
+$arr->add(new BooleanLiteral(true));
+$arr->add(new DoubleLiteral(1.0));
+echo $arr->resolve();
+```
+
+##### Output
+
+```php
+$values["str", 123, true, 1.0]
+
+// $arr->asFunction();
+array("str", 123, true, 1.0)
+```
+
+## Grouping
+
+Class functions to group expressions and literals.
+
+## Brackets
+
+##### Example
+```php
+$b = new Brackets(new Unary("return", ";"));
+echo $b->resolve();
+```
+
+##### Output
+```php
+{ return; }
+```
+
+## Parenthesis
+
+##### Example
+```php
+$b = new Parenthesis(new Binary(new Variable("a"), "+", new Variable("b")));
+echo $b->resolve();
+```
+
+##### Output
+```php
+( $a + $b )
+```
+
+## Square brackets
+
+##### Example
+```php
+$b = new SquareBrackets(new StringLiteral("square"));
+echo $b->resolve();
+```
+
+##### Output
+```php
+[ "square" ]
 ```
 
 ## Creating classes
