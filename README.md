@@ -73,7 +73,7 @@ class ClassName
         - [Decrement](#Decrement)
         - [Increment](#Increment)
         - [Logical](#Logical)
-    * [Understanding Literals](#Literals)
+    * [Literals](#Literals)
         - [String](#String)
         - [Integer](#Integer)
         - [Boolean](#Boolean)
@@ -249,7 +249,156 @@ echo $ternary->resolve();
 !$name ? $name : ""
 ```
 
-## Creating Class Components
+## Operator types
+
+There are a lot of operator types, but we can intentify by types of them for example logic or arithmetic operators.
+
+### Arithmetic
+
+```php
+class Arithmetic extends Operator
+{
+    const ADD = '+';
+    const SUB = '-';
+    const MULT = '*';
+    const DIV = '/';
+    const MOD = '%';
+}
+```
+
+###### Example
+
+```php
+$bin = new Binary(
+    new Variable("num1"),
+    Arithmetic.ADD,
+    new Unary(new Variable("num2"), ";")
+);
+echo $bin->resolve();
+```
+
+###### Output
+```php
+$num1 + $num2;
+```
+
+## Combine
+
+```php
+class Combined extends Operator
+{
+    const ADD = '+=';
+    const SUB = '-=';
+    const MUL = '*=';
+    const DIV = '/=';
+    const STR = '.=';
+    const CONCAT = '.';
+    const COMMA = ',';
+}
+```
+
+###### Example
+
+```php
+$bin = new Binary(
+    new Variable("num1"),
+    Combined.ADD,
+    new Unary(new Variable("num2"), ";")
+);
+echo $bin->resolve();
+```
+
+###### Output
+```php
+$num1 += $num2;
+```
+
+## Comparison
+
+```php
+class Comparison extends Operator
+{
+    const SET = '=';
+    const ARRAY_ASSIGN = '=>';
+    const EQUAL = '==';
+    const LESS_THAN = '<';
+    const NOT_EQUAL = '!=';
+    const BLANK_SPACE = '=';
+    const IDENTICAL = '===';
+    const GREATER_THAN = '>';
+    const STATIC_CLASS = '::';
+    const NOT_IDENTICAL = '!==';
+    const LESS_THAN_EQUAL = '<=';
+    const GREATER_THAN_EQUAL = '>=';
+    const _INSTANCEOF = 'instanceof';
+}
+```
+
+###### Example
+
+```php
+$bin = new Binary(
+    new Variable("num1"),
+    Comparison._INSTANCEOF,
+    new Unary(new Variable("num2"), ";")
+);
+echo $bin->resolve();
+```
+
+###### Output
+```php
+$num1 instanceof $num2;
+```
+
+## Increment
+
+Just a ++ operator
+
+```php
+class Increment extends Operator
+{
+    const INCREMENT = '++';
+    const PRE_INCREMENT = 'PRE_INC';
+}
+```
+
+###### Example
+
+```php
+$bin = new Unary(new Variable("index"), Increment.INCREMENT);
+echo $bin->resolve();
+```
+
+###### Output
+```php
+$index++
+```
+
+## Decrement
+
+Just a -- operator
+
+```php
+class Decrement extends Operator
+{
+    const DECREMENT = '--';
+    const PRE_DECREMENT = 'PRE_DEC';
+}
+```
+
+###### Example
+
+```php
+$bin = new Unary(new Variable("index"), Decrement.DECREMENT);
+echo $bin->resolve();
+```
+
+###### Output
+```php
+$index--
+```
+
+## Creating classes
 
 This class creates a class struct in php receives in construct a string with the name of class to be created.
 
@@ -262,10 +411,6 @@ CodeBuilder\Classes\ClassComponent
 ```php
 ClassComponent($className: String)
 ```
-
-#### Methods
-
-Methods available in the ClassComponent
 
 #### Getters
 
@@ -283,9 +428,38 @@ Methods available in the ClassComponent
 - `add($component: Base)`
     * Receives a component object compatible with class creation component.
 
+###### Example
 
+```php
+$method  = new Classes\ClassMethod("methodForAClass");
+$method->add($comment);
+$method->add(new Statements\ReturnStatement(
+    new Expressions\Unary(
+        new Literals\StringLiteral("Hi!!"),
+        ";"
+    ),
+));
 
-### Attribute Class for ClassComponent
+$classes = new Classes\ClassComponent("ClassName");
+$classes->add(new Statements\StatementBlock($method));
+echo $classes->resolve();
+```
+
+###### Output
+
+```php
+<?php
+
+class ClassName
+{
+    public function methodForAClass()
+    {
+        return "Hi!!";;
+    }
+}
+```
+
+## Class attributes
 
 ```php
 CodeBuilder\Classes\ClassAttribute
@@ -298,10 +472,6 @@ This class receive a Variable object and creates an attribute property in the cl
 ```php
 ClassAttribute($className: Expression\Variable)
 ```
-
-#### Methods
-
-Methods available in the ClassComponent
 
 #### Getters
 
@@ -331,17 +501,11 @@ $attr->add($comment);
 
 class ClassName
 {
-    /**
-     * This is a comment for a class attribute.
-     *
-     * @var string $attr
-     */
     protected $attributeClass;
 }
 ```
 
-
-### Namespaces for a class component
+## Namespaces
 
 ```php
 CodeBuilder\Classes\ClassNamespace
@@ -357,17 +521,13 @@ This class receive a class namespace as string.
 ClassNamespace($namespace: String)
 ```
 
-#### Methods
-
-Methods available in the ClassNamespace
-
 #### Setters
 
 - `add($ns: String|Base)`
     * You can add a comment for the base namespace additionally.
     * The next additions in the add method becomes in a `use` for the class.
 
-Example in `CodeBuilder/Examples/class.ns.builder.php`
+###### Example
 
 ```php
 $ns = new Classes\ClassNamespace("BaseNamespace\Created\FromPHP");
@@ -375,16 +535,11 @@ $ns->add("\BaseNamespace\Test");
 $ns->add("\BaseNamespace\Test2");
 ```
     
-## Output
+###### Output
 
 ```php
 <?php
 
-/**
- * This is a comment for a namespace class.
- *
- * @author phalcondroid
- */
 namespace BaseNamespace\Created\FromPHP;
 
 use \BaseNamespace\Test;
@@ -395,8 +550,7 @@ class ClassName
 }
 ```
 
-
-### Use traits in class component
+## Traits
 
 ```php
 CodeBuilder\Classes\ClassTrait
@@ -411,10 +565,6 @@ This class receive a use trait as string.
 ```php
 ClassTrait($trait: String)
 ```
-
-#### Methods
-
-Methods available in the ClassTrait
 
 #### Setters
 

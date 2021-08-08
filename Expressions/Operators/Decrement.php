@@ -14,6 +14,6 @@ namespace CodeBuilder\Expressions\Operators;
  */
 class Decrement extends Operator
 {
-    const DECREMENT = '++';
+    const DECREMENT = '--';
     const PRE_DECREMENT = 'PRE_DEC';
 }

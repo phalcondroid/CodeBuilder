@@ -9,5 +9,6 @@ class ClassName
      */
     public function methodForAClass()
     {
+        return "Hi!!";;
     }
 }

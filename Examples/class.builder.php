@@ -9,6 +9,7 @@ use CodeBuilder\Classes;
 use CodeBuilder\Statements;
 use CodeBuilder\Expressions;
 use CodeBuilder\Annotations;
+use CodeBuilder\Expressions\Literals;
 
 // You can create the last dependencias at beggining, for example a comment of class method.
 $comment = new Annotations\Comment("This is a comment for class method");
@@ -21,6 +22,12 @@ $comment->add(new Annotations\PHPDocs(
 // This is the class method.
 $method  = new Classes\ClassMethod("methodForAClass");
 $method->add($comment);
+$method->add(new Statements\ReturnStatement(
+    new Expressions\Unary(
+        new Literals\StringLiteral("Hi!!"),
+        ";"
+    ),
+));
 
 // The class with a Statementblock, that means a { } curly braces when the code is included.
 $classes = new Classes\ClassComponent("ClassName");
